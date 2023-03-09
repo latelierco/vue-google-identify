@@ -1,4 +1,4 @@
-# vue-google-identity
+# Vue Google Identity
 
 <p>
   <a href="https://www.npmjs.com/package/vue-google-identity"><img src="https://img.shields.io/npm/v/vue-google-identity" alt="Version"></a>
