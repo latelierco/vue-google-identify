@@ -21,7 +21,6 @@ export default {
   setup() {
     const logged = ref(false)
     const callback = (response) => {
-      console.log(response)
       if (response.credential) {
         logged.value = true
       }

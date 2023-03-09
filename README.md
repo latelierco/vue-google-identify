@@ -58,6 +58,7 @@ export default {
 </script>
 ```
 
+## Methods
 ### Sign out
 
 To sign out you can use [`onSignout`](https://developers.google.com/identity/gsi/web/reference/js-reference#google.accounts.id.disableAutoSelect) function.
@@ -73,9 +74,9 @@ onSignout()
  * [ ] Loaded callback
  * [x] [Sign in](https://developers.google.com/identity/gsi/web/guides/display-button)
  * [x] [Sign out](https://developers.google.com/identity/gsi/web/reference/js-reference#google.accounts.id.disableAutoSelect) 
- * [ ] [One tap prompt](https://developers.google.com/identity/gsi/web/reference/js-reference#google.accounts.id.prompt) 
- * [ ] Custom [Button Configuration](https://developers.google.com/identity/gsi/web/reference/js-reference#GsiButtonConfiguration)
- * [ ] Custom [Identity Configuration](https://developers.google.com/identity/gsi/web/reference/js-reference#google.accounts.id.initialize)
+ * [x] [One tap prompt](https://developers.google.com/identity/gsi/web/reference/js-reference#google.accounts.id.prompt) 
+ * [x] Custom [Button Configuration](https://developers.google.com/identity/gsi/web/reference/js-reference#GsiButtonConfiguration)
+ * [x] Custom [Identity Configuration](https://developers.google.com/identity/gsi/web/reference/js-reference#google.accounts.id.initialize)
  * [ ] Custom Button layout (under consideration)
 
 <p>

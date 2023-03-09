@@ -3,7 +3,10 @@ import { reactive, watch } from 'vue'
 export const state = reactive({
   pristine: true,
   loaded: false,
+  prompt: true,
   clientId: null,
+  idConfiguration: {},
+  buttonConfiguration: {},
 })
 
 export const clientLoaded = (callback) => {

@@ -15,9 +15,13 @@ export default {
       type: Function,
       default: () => {}
     },
+    idConfiguration: {
+      type: Object,
+      default: () => { return state.idConfiguration }
+    },
     buttonConfiguration: {
       type: Object,
-      default: () => { return {} }
+      default: () => { return state.buttonConfiguration }
     }
   },
   setup(props) {
@@ -32,11 +36,16 @@ export default {
       };
 
       await clientLoaded(() => {
-        window.google.accounts.id.initialize({
+        const idConfiguration = {
+          ... props.idConfiguration,
           client_id: state.clientId,
           callback: window.googleSigninCallback,
-        });
+        }
+        window.google.accounts.id.initialize(idConfiguration);
         window.google.accounts.id.renderButton(button.value, props.buttonConfiguration)
+        if (state.prompt === true) {
+          window.google.accounts.id.prompt()
+        }
       })
     })
 
