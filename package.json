@@ -1,7 +1,6 @@
 {
   "name": "vue-google-identity",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.0.1",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -39,5 +38,25 @@
     "last 2 versions",
     "not dead",
     "not ie 11"
-  ]
+  ],
+  "exports": {
+    ".": "./src/GoogleIdentity/index.js"
+  },
+  "description": "## Project setup ``` npm install ```",
+  "main": "./src/GoogleIdentity/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/latelierco/vue-google-identity.git"
+  },
+  "keywords": [
+    "vue",
+    "google",
+    "identity"
+  ],
+  "author": "trinketmage",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/latelierco/vue-google-identity/issues"
+  },
+  "homepage": "https://github.com/latelierco/vue-google-identity#readme"
 }
