@@ -6,7 +6,7 @@
 </p>
 
 ## Overview
-You might be here cause you've been task to migrate from [Google Sign-in](https://developers.google.com/identity/sign-in/web/sign-in) to [Google Identity](https://developers.google.com/identity/gsi/web/guides/migration#authentication_and_authorization)([depracted](https://developers.googleblog.com/2021/08/gsi-jsweb-deprecation.html))
+You might be here cause you've been task to migrate from [Google Sign-in](https://developers.google.com/identity/sign-in/web/sign-in) to [Google Identity](https://developers.google.com/identity/gsi/web/guides/migration#authentication_and_authorization)([deprecated](https://developers.googleblog.com/2021/08/gsi-jsweb-deprecation.html))
 
 ## Installation
 ```
