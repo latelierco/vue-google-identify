@@ -1,4 +1,11 @@
 <template>
+  <div
+    @click="requestDriveAcces"
+    v-if="!logged"
+    class="button"
+  >
+    Drive access
+  </div>
   <GoogleButton
     :callback="callback"
     v-if="!logged"
@@ -14,7 +21,7 @@
 
 <script>
 import { ref } from 'vue'
-import { onSignout } from './GoogleIdentity'
+import { onSignout, requestCode } from './GoogleIdentity'
 
 export default {
   name: 'App',
@@ -29,10 +36,17 @@ export default {
       logged.value = false
       onSignout()
     }
+    const requestDriveAcces = async () => {
+      const response = await requestCode();
+      if (response.code) {
+        logged.value = true
+      }
+    }
     return {
       logged,
       callback,
-      signout
+      signout,
+      requestDriveAcces
     }
   }
 }
@@ -52,6 +66,14 @@ body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  gap: 10px;
+}
+#app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-direction: column;
 }
 .button {
   border: 1px solid #dadce0;
@@ -60,6 +82,7 @@ body {
   font-weight: 700;
   padding: 10px;
   cursor: pointer;
+  text-align: center;
 }
 .button:hover {
   background: rgba(66,133,244,.04);

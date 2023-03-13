@@ -7,6 +7,7 @@ export const state = reactive({
   clientId: null,
   idConfiguration: {},
   buttonConfiguration: {},
+  authorizationConfiguration: {},
 })
 
 export const clientLoaded = (callback) => {
@@ -41,3 +42,24 @@ export const onSignout = (callback = () => {}) => {
   clientLoaded(window.google.accounts.id.disableAutoSelect);
   callback();
 }
+
+export const requestCode = () => {
+  return new Promise((resolve, reject) => {
+    clientLoaded((google) => {
+      google.accounts.oauth2
+        .initCodeClient({
+          client_id: state.clientId,
+          scope: state.authorizationConfiguration.scope,
+          ux_mode: "popup",
+          callback: (response) => {
+            if (response.code) {
+              resolve(response);
+            } else {
+              reject(response);
+            }
+          },
+        })
+        .requestCode();
+    });
+  });
+};

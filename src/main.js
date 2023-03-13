@@ -12,6 +12,9 @@ app.use(GoogleIdentity, {
   // buttonConfiguration: {
   //   theme: "filled_blue"
   // },
+  authorizationConfiguration: {
+    scope: "https://www.googleapis.com/auth/drive email profile openid"
+  },
 })
 
 app.mount('#app')

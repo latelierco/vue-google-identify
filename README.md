@@ -78,6 +78,8 @@ onSignout()
  * [x] Custom [Button Configuration](https://developers.google.com/identity/gsi/web/reference/js-reference#GsiButtonConfiguration)
  * [x] Custom [Identity Configuration](https://developers.google.com/identity/gsi/web/reference/js-reference#google.accounts.id.initialize)
  * [ ] Custom Button layout (under consideration)
+ * [ ] [Implicit flow](https://developers.google.com/identity/oauth2/web/guides/choose-authorization-model)
+ * [ ] [Authorization code flow](https://developers.google.com/identity/oauth2/web/guides/choose-authorization-model)
 
 <p>
   <a href="https://twitter.com/uwutrinket"><img src="https://img.shields.io/twitter/follow/uwutrinket?style=social" alt="Twitter"></a>
