@@ -21,7 +21,7 @@ export default {
   install: (app, options) => {
     const { clientId, prompt, idConfiguration, buttonConfiguration, authorizationConfiguration } = options
     state.clientId = clientId
-    if (prompt) {
+    if ("prompt" in options) {
       state.prompt = prompt
     }
     if (idConfiguration) {
