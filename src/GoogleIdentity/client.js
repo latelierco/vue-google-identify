@@ -37,6 +37,7 @@ export const clientLoad = new Promise((resolve) => {
   document.head.appendChild(script)
 })
 
-export const onSignout = () => {
+export const onSignout = ({callback = () => {}}) => {
   clientLoaded(window.google.accounts.id.disableAutoSelect);
+  callback();
 }
