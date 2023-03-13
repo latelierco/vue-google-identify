@@ -8,7 +8,6 @@
 
 <script>
 import { state, clientLoaded } from './client'
-import { ref, onMounted } from 'vue'
 export default {
   props: {
     callback: {
@@ -24,37 +23,33 @@ export default {
       default: () => { return state.buttonConfiguration }
     }
   },
-  setup(props) {
-    const loading = ref(false)
-    const button = ref(null)
-
-    onMounted(async () => {
-      window.googleSigninCallback = async (response) => {
-        loading.value = true
-        props.callback(response)
-        loading.value = false
-      };
-
-      await clientLoaded(() => {
-        const idConfiguration = {
-          ... props.idConfiguration,
-          client_id: state.clientId,
-          callback: window.googleSigninCallback,
-        }
-        window.google.accounts.id.initialize(idConfiguration);
-        window.google.accounts.id.renderButton(button.value, props.buttonConfiguration)
-        if (state.prompt === true) {
-          window.google.accounts.id.prompt()
-        }
-      })
-    })
-
+  data() {
     return {
-      state,
-      loading,
-      button,
+      loading: false
     }
-  }
+  },
+  async mounted() {
+    const button = this.$refs.button;
+
+    window.googleSigninCallback = async (response) => {
+      this.loading = true
+      await this.callback(response)
+      this.loading = false
+    };
+
+    await clientLoaded(() => {
+      const idConfiguration = {
+        ... this.idConfiguration,
+        client_id: state.clientId,
+        callback: window.googleSigninCallback,
+      }
+      window.google.accounts.id.initialize(idConfiguration);
+      window.google.accounts.id.renderButton(button, this.buttonConfiguration)
+      if (state.prompt === true) {
+        window.google.accounts.id.prompt()
+      }
+    })
+  },
 }
 </script>
 

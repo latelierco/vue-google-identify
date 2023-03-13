@@ -1,24 +1,17 @@
-import { reactive, watch } from 'vue'
-
-export const state = reactive({
+export const state = {
   pristine: true,
-  loaded: false,
   prompt: true,
   clientId: null,
   idConfiguration: {},
   buttonConfiguration: {},
   authorizationConfiguration: {},
-})
+}
+
+const callbacks = []
 
 export const clientLoaded = (callback) => {
   if (!state.loaded) {
-    const unwatch = watch(
-      () => state.loaded,
-      (loaded) => {
-        loaded && callback(window.google);
-        unwatch();
-      }
-    )
+    callbacks.push(callback)
   } else {
     callback(window.google);
   }
@@ -29,6 +22,7 @@ export const clientLoad = new Promise((resolve) => {
   state.pristine = false
   script.addEventListener('load', () => {
     state.loaded = true
+    callbacks.forEach(_ => _())
     resolve(window.google)
   })
   script.src = 'https://accounts.google.com/gsi/client'
