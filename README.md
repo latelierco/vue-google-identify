@@ -80,7 +80,7 @@ onSignout()
  * [ ] Custom Button layout (under consideration)
  * [x] [Implicit flow](https://developers.google.com/identity/oauth2/web/guides/choose-authorization-model)
  * [x] [Authorization code flow](https://developers.google.com/identity/oauth2/web/guides/choose-authorization-model)
- * [ ] [Authorization model handling errors](https://developers.google.com/identity/oauth2/web/guides/error)
+ * [x] [Authorization model handling errors](https://developers.google.com/identity/oauth2/web/guides/error)
 
 <p>
   <a href="https://twitter.com/uwutrinket"><img src="https://img.shields.io/twitter/follow/uwutrinket?style=social" alt="Twitter"></a>
