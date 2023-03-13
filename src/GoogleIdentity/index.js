@@ -2,15 +2,20 @@ import {
   state,
   clientLoad,
   onSignout,
-  requestCode,
 } from './client'
+
+import {
+  requestAccessToken,
+  requestCode,
+} from './authorization'
 
 export {
   onSignout,
+  requestAccessToken,
   requestCode,
 };
 
-import GoogleButton from './GoogleButton.vue'
+import SignIn from './SignIn.vue'
 
 export default {
   install: (app, options) => {
@@ -29,6 +34,6 @@ export default {
       state.authorizationConfiguration = authorizationConfiguration
     }
     clientLoad.catch(e => console.warn(e))
-    app.component('GoogleButton', GoogleButton)
+    app.component('GoogleSignIn', SignIn)
   },
 }

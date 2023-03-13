@@ -1,12 +1,19 @@
 <template>
   <div
-    @click="requestDriveAcces"
+    @click="requestImplicitAcces"
     v-if="!logged"
     class="button"
   >
-    Drive access
+    Implicit flow drive access
   </div>
-  <GoogleButton
+  <div
+    @click="requestCodeAcces"
+    v-if="!logged"
+    class="button"
+  >
+    Authorization code flow drive access
+  </div>
+  <GoogleSignIn
     :callback="callback"
     v-if="!logged"
   />
@@ -21,7 +28,7 @@
 
 <script>
 import { ref } from 'vue'
-import { onSignout, requestCode } from './GoogleIdentity'
+import { onSignout, requestAccessToken, requestCode } from './GoogleIdentity'
 
 export default {
   name: 'App',
@@ -36,7 +43,13 @@ export default {
       logged.value = false
       onSignout()
     }
-    const requestDriveAcces = async () => {
+    const requestImplicitAcces = async () => {
+      const response = await requestAccessToken();
+      if (response.access_token) {
+        logged.value = true
+      }
+    }
+    const requestCodeAcces = async () => {
       const response = await requestCode();
       if (response.code) {
         logged.value = true
@@ -46,7 +59,8 @@ export default {
       logged,
       callback,
       signout,
-      requestDriveAcces
+      requestImplicitAcces,
+      requestCodeAcces
     }
   }
 }
