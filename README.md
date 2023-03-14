@@ -6,14 +6,25 @@
 </p>
 
 ## Overview
-You might be here cause you've been task to migrate from [Google Sign-in](https://developers.google.com/identity/sign-in/web/sign-in)([deprecated](https://developers.googleblog.com/2021/08/gsi-jsweb-deprecation.html)) to [Google Identity](https://developers.google.com/identity/gsi/web/guides/migration#authentication_and_authorization)
+You might be here cause you've been task to migrate from [Google Sign-in](https://developers.google.com/identity/sign-in/web/sign-in)([deprecated](https://developers.googleblog.com/2021/08/gsi-jsweb-deprecation.html)) to [Google Identity](https://developers.google.com/identity)
 
 ## Installation
 ```
 npm install -S vue-google-identity
 ```
 
-https://developers.google.com/identity/gsi/web/guides/overview
+## Migration guide
+[Google Sign-in](https://developers.google.com/identity/sign-in/web/sign-in) is set to be deprecated after March 31, 2023. It is now replaced by [Google Identity](https://developers.google.com/identity) separate in two libraries for web [Authentification](https://developers.google.com/identity/gsi/web/guides/overview) and [Authorization](https://developers.google.com/identity/oauth2/web/guides/overview)
+
+### Local development consideration
+- [Add both http://localhost *and* http://localhost:<port_number>](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid#get_your_google_api_client_id).
+
+
+### Authentification
+If you don't need scope (or using only `email, profile, and openid`) and you were previously using `gapi.auth2.authorize` [`id_token`](https://developers.google.com/identity/sign-in/web/reference#gapiauth2authorizeresponse), you will need to use [Authentification Google Sign-in Button](https://developers.google.com/identity/gsi/web/guides/overview) that now return a [`credential`](https://developers.google.com/identity/gsi/web/reference/js-reference#CredentialResponse) (instead of [`id_token`](https://developers.google.com/identity/sign-in/web/reference#gapiauth2authorizeresponse)).
+
+### Authorization
+...
 
 ## Setup
 ### Register plugin
@@ -23,18 +34,11 @@ Add GoogleIdentity plugin to your App in `main.js` file, it will:
 **You will need to specify your [Google API Client ID](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid), mind to use `.env`**
 
 ```javascript
-import { createApp } from 'vue'
-import App from './App.vue'
-
 import GoogleIdentity from 'vue-google-identity'
-
-const app = createApp(App)
 
 app.use(GoogleIdentity, {
   clientId: process.env.VUE_APP_GOOGLE_CLIENT_ID,
 })
-
-app.mount('#app')
 ```
 
 ### Usage
@@ -43,7 +47,7 @@ You can use callback prop to access the response's `credential`.
 
 ```vue
 <template>
-  <GoogleButton :callback="callback"/>
+  <GoogleSignIn :callback="callback"/>
 </template>
 
 <script>
@@ -77,10 +81,11 @@ onSignout()
  * [x] [One tap prompt](https://developers.google.com/identity/gsi/web/reference/js-reference#google.accounts.id.prompt) 
  * [x] Custom [Button Configuration](https://developers.google.com/identity/gsi/web/reference/js-reference#GsiButtonConfiguration)
  * [x] Custom [Identity Configuration](https://developers.google.com/identity/gsi/web/reference/js-reference#google.accounts.id.initialize)
- * [ ] Custom Button layout (under consideration)
+ * [ ] Custom GoogleSignIn Button layout (under consideration)
  * [x] [Implicit flow](https://developers.google.com/identity/oauth2/web/guides/choose-authorization-model)
  * [x] [Authorization code flow](https://developers.google.com/identity/oauth2/web/guides/choose-authorization-model)
  * [x] [Authorization model handling errors](https://developers.google.com/identity/oauth2/web/guides/error)
+ * [ ] Migration guide
 
 <p>
   <a href="https://twitter.com/uwutrinket"><img src="https://img.shields.io/twitter/follow/uwutrinket?style=social" alt="Twitter"></a>
