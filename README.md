@@ -6,14 +6,13 @@
 </p>
 
 ## Overview
-You might be here cause you've been task to migrate from [Google Sign-in](https://developers.google.com/identity/sign-in/web/sign-in)([deprecated](https://developers.googleblog.com/2021/08/gsi-jsweb-deprecation.html)) to [Google Identity](https://developers.google.com/identity)
-
-## Migration guide
 [Google Sign-in](https://developers.google.com/identity/sign-in/web/sign-in) is set to be deprecated after March 31, 2023. It is now replaced by [Google Identity](https://developers.google.com/identity) separate in two libraries for web [Authentification](https://developers.google.com/identity/gsi/web/guides/overview) and [Authorization](https://developers.google.com/identity/oauth2/web/guides/overview)
 
 
 ### Local development consideration
 - [Add both http://localhost *and* http://localhost:<port_number>](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid#get_your_google_api_client_id).
+
+## Migration guide
 
 
 ### Authentification
