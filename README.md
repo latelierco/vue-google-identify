@@ -16,21 +16,29 @@ npm install -S vue-google-identity
 ## Migration guide
 [Google Sign-in](https://developers.google.com/identity/sign-in/web/sign-in) is set to be deprecated after March 31, 2023. It is now replaced by [Google Identity](https://developers.google.com/identity) separate in two libraries for web [Authentification](https://developers.google.com/identity/gsi/web/guides/overview) and [Authorization](https://developers.google.com/identity/oauth2/web/guides/overview)
 
+
 ### Local development consideration
 - [Add both http://localhost *and* http://localhost:<port_number>](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid#get_your_google_api_client_id).
 
 
 ### Authentification
-If you don't need scope (or using only `email, profile, and openid`) and you were previously using `gapi.auth2.authorize` [`id_token`](https://developers.google.com/identity/sign-in/web/reference#gapiauth2authorizeresponse), you will need to use [Authentification Google Sign-in Button](https://developers.google.com/identity/gsi/web/guides/overview) that now return a [`credential`](https://developers.google.com/identity/gsi/web/reference/js-reference#CredentialResponse) (instead of [`id_token`](https://developers.google.com/identity/sign-in/web/reference#gapiauth2authorizeresponse)).
+If you don't need scope (or using only `email, profile, and openid`) and you were previously using `gapi.auth2.authorize` [`id_token`](https://developers.google.com/identity/sign-in/web/reference#gapiauth2authorizeresponse), you will need to use [Authentification Google Sign-in Button](https://developers.google.com/identity/gsi/web/guides/overview) that now return a [`credential`](https://developers.google.com/identity/gsi/web/reference/js-reference#CredentialResponse) (instead of [`id_token`](https://developers.google.com/identity/sign-in/web/reference#gapiauth2authorizeresponse) (wrapper here in `<GoogleSignIn />)).
 
 ### Authorization
-...
+If you need any other [scope](https://developers.google.com/identity/protocols/oauth2/scopes) you probably will need to implement one of the 2 following flow: 
+#### 1. [OAuth 2.0 authorization code flow (or Code Model)](https://developers.google.com/identity/oauth2/web/guides/use-code-model)
+Your server calls Google APIs on a user's behalf.
+You will need to use [initCodeClient](https://developers.google.com/identity/oauth2/web/reference/js-reference#google.accounts.oauth2.initCodeClient) (wrapped here in method `requestAccessToken`) that returns a [`code`](https://developers.google.com/identity/oauth2/web/reference/js-reference#CodeClient).
+
+#### 2. [OAuth 2.0 implicit grant flow (or Token Model)](https://developers.google.com/identity/oauth2/web/guides/use-token-model)
+The browser calls Google APIs.
+You will need to use [initTokenClient](https://developers.google.com/identity/oauth2/web/reference/js-reference#google.accounts.oauth2.initTokenClient) (wrapped here in method `requestCode`) that returns an [`access_token`](https://developers.google.com/identity/oauth2/web/reference/js-reference#TokenResponse).
 
 ## Setup
 ### Register plugin
 Add GoogleIdentity plugin to your App in `main.js` file, it will:
 - Load the Google Identity client `https://accounts.google.com/gsi/client`;
-- Register a component `GoogleButton` component that display a [Google Button](https://developers.google.com/identity/gsi/web/guides/personalized-button).
+- Register a component `GoogleSignIn` component that display a [Authentification Google Sign-in Button](https://developers.google.com/identity/gsi/web/guides/personalized-button).
 **You will need to specify your [Google API Client ID](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid), mind to use `.env`**
 
 ```javascript
