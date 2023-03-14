@@ -22,7 +22,7 @@ npm install -S vue-google-identity
 
 
 ### Authentification
-If you don't need scope (or using only `email, profile, and openid`) and you were previously using `gapi.auth2.authorize` [`id_token`](https://developers.google.com/identity/sign-in/web/reference#gapiauth2authorizeresponse), you will need to use [Authentification Google Sign-in Button](https://developers.google.com/identity/gsi/web/guides/overview) that now return a [`credential`](https://developers.google.com/identity/gsi/web/reference/js-reference#CredentialResponse) (instead of [`id_token`](https://developers.google.com/identity/sign-in/web/reference#gapiauth2authorizeresponse) (wrapper here in `<GoogleSignIn />)).
+If you don't need scope (or using only `email, profile, and openid`) and you were previously using `gapi.auth2.authorize` [`id_token`](https://developers.google.com/identity/sign-in/web/reference#gapiauth2authorizeresponse), you will need to use [Authentification Google Sign-in Button](https://developers.google.com/identity/gsi/web/guides/overview) that now return a [`credential`](https://developers.google.com/identity/gsi/web/reference/js-reference#CredentialResponse) (instead of [`id_token`](https://developers.google.com/identity/sign-in/web/reference#gapiauth2authorizeresponse) (wrapper here in `<GoogleSignIn />`)).
 
 ### Authorization
 If you need any other [scope](https://developers.google.com/identity/protocols/oauth2/scopes) you probably will need to implement one of the 2 following flows: 
