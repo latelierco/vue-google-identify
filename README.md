@@ -8,11 +8,6 @@
 ## Overview
 You might be here cause you've been task to migrate from [Google Sign-in](https://developers.google.com/identity/sign-in/web/sign-in)([deprecated](https://developers.googleblog.com/2021/08/gsi-jsweb-deprecation.html)) to [Google Identity](https://developers.google.com/identity)
 
-## Installation
-```
-npm install -S vue-google-identity
-```
-
 ## Migration guide
 [Google Sign-in](https://developers.google.com/identity/sign-in/web/sign-in) is set to be deprecated after March 31, 2023. It is now replaced by [Google Identity](https://developers.google.com/identity) separate in two libraries for web [Authentification](https://developers.google.com/identity/gsi/web/guides/overview) and [Authorization](https://developers.google.com/identity/oauth2/web/guides/overview)
 
@@ -22,7 +17,7 @@ npm install -S vue-google-identity
 
 
 ### Authentification
-If you don't need scope (or using only `email, profile, and openid`) and you were previously using `gapi.auth2.authorize` [`id_token`](https://developers.google.com/identity/sign-in/web/reference#gapiauth2authorizeresponse), you will need to use [Authentification Google Sign-in Button](https://developers.google.com/identity/gsi/web/guides/overview) that now return a [`credential`](https://developers.google.com/identity/gsi/web/reference/js-reference#CredentialResponse) (instead of [`id_token`](https://developers.google.com/identity/sign-in/web/reference#gapiauth2authorizeresponse) (wrapper here in `<GoogleSignIn />`)).
+If you don't need scope (or using only `email, profile, and openid`) and you were previously using `gapi.auth2.authorize` [`id_token`](https://developers.google.com/identity/sign-in/web/reference#gapiauth2authorizeresponse), you will need to use [Authentification Google Sign-in Button](https://developers.google.com/identity/gsi/web/guides/overview) that now return a [`credential`](https://developers.google.com/identity/gsi/web/reference/js-reference#CredentialResponse) (instead of [`id_token`](https://developers.google.com/identity/sign-in/web/reference#gapiauth2authorizeresponse) (wrapped here in `<GoogleSignIn />`)).
 
 ### Authorization
 If you need any other [scope](https://developers.google.com/identity/protocols/oauth2/scopes) you probably will need to implement one of the 2 following flows: 
@@ -33,6 +28,11 @@ You will need to use [initCodeClient](https://developers.google.com/identity/oau
 #### 2. [OAuth 2.0 implicit grant flow (or Token Model)](https://developers.google.com/identity/oauth2/web/guides/use-token-model)
 The browser calls Google APIs. No backend were needed.
 You will need to use [initTokenClient](https://developers.google.com/identity/oauth2/web/reference/js-reference#google.accounts.oauth2.initTokenClient) (wrapped here in method `requestCode`) that returns an [`access_token`](https://developers.google.com/identity/oauth2/web/reference/js-reference#TokenResponse).
+
+## Installation
+```
+npm install -S vue-google-identity
+```
 
 ## Setup
 ### Register plugin
