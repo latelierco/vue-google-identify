@@ -22,11 +22,11 @@ If you don't need scope (or using only `email, profile, and openid`) and you wer
 If you need any other [scope](https://developers.google.com/identity/protocols/oauth2/scopes) you probably will need to implement one of the 2 following flows: 
 #### 1. [OAuth 2.0 authorization code flow (or Code Model)](https://developers.google.com/identity/oauth2/web/guides/use-code-model)
 Your server calls Google APIs on a user's behalf. You were sending a `offlineCode` to your backend.
-You will need to use [initCodeClient](https://developers.google.com/identity/oauth2/web/reference/js-reference#google.accounts.oauth2.initCodeClient) (wrapped here in method `requestAccessToken`) that returns a [`code`](https://developers.google.com/identity/oauth2/web/reference/js-reference#CodeClient).
+You will need to use [initCodeClient](https://developers.google.com/identity/oauth2/web/reference/js-reference#google.accounts.oauth2.initCodeClient) (wrapped here in method `requestCode`) that returns a [`code`](https://developers.google.com/identity/oauth2/web/reference/js-reference#CodeClient).
 
 #### 2. [OAuth 2.0 implicit grant flow (or Token Model)](https://developers.google.com/identity/oauth2/web/guides/use-token-model)
 The browser calls Google APIs. No backend were needed.
-You will need to use [initTokenClient](https://developers.google.com/identity/oauth2/web/reference/js-reference#google.accounts.oauth2.initTokenClient) (wrapped here in method `requestCode`) that returns an [`access_token`](https://developers.google.com/identity/oauth2/web/reference/js-reference#TokenResponse).
+You will need to use [initTokenClient](https://developers.google.com/identity/oauth2/web/reference/js-reference#google.accounts.oauth2.initTokenClient) (wrapped here in method `requestAccessToken`) that returns an [`access_token`](https://developers.google.com/identity/oauth2/web/reference/js-reference#TokenResponse).
 
 ## Installation
 ```
@@ -80,6 +80,32 @@ import { onSignout } from 'vue-google-identity'
 onSignout()
 ```
 
+### Request code
+
+To request code, you can use `requestCode` that wraps [`initCodeClient`](https://developers.google.com/identity/oauth2/web/reference/js-reference#google.accounts.oauth2.initCodeClient) function.
+
+```javascript
+import { requestCode } from 'vue-google-identity'
+
+const response = await requestCode();
+if (response.code) {
+  logged.value = true
+}
+```
+
+### Request access token
+
+To request code, you can use `requestAccessToken` that wraps [`initTokenClient`](https://developers.google.com/identity/oauth2/web/reference/js-reference#google.accounts.oauth2.initTokenClient) function.
+
+```javascript
+import { requestAccessToken } from 'vue-google-identity'
+
+const response = await requestAccessToken();
+if (response.access_token) {
+  logged.value = true
+}
+```
+
 ## Roadmap
  * [x] [Loading client](https://developers.google.com/identity/gsi/web/guides/client-library)
  * [ ] Loaded callback
@@ -92,7 +118,7 @@ onSignout()
  * [x] [Implicit flow](https://developers.google.com/identity/oauth2/web/guides/choose-authorization-model)
  * [x] [Authorization code flow](https://developers.google.com/identity/oauth2/web/guides/choose-authorization-model)
  * [x] [Authorization model handling errors](https://developers.google.com/identity/oauth2/web/guides/error)
- * [ ] Migration guide
+ * [x] Migration guide
 
 <p>
   <a href="https://twitter.com/uwutrinket"><img src="https://img.shields.io/twitter/follow/uwutrinket?style=social" alt="Twitter"></a>
