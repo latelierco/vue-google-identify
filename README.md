@@ -7,7 +7,7 @@
 
 ## Overview
 [Google Sign-in](https://developers.google.com/identity/sign-in/web/sign-in) is set to be deprecated after March 31, 2023. It is now replaced by [Google Identity](https://developers.google.com/identity) separate in two libraries for web [Authentification](https://developers.google.com/identity/gsi/web/guides/overview) and [Authorization](https://developers.google.com/identity/oauth2/web/guides/overview)
-
+`
 [Feedback](https://github.com/latelierco/vue-google-identity/issues) are much welcomed.
 
 ### Local development consideration
